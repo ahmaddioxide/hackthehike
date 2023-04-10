@@ -27,7 +27,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
+      body: SizedBox(
         height: height,
         width: width,
         child: Column(
@@ -35,7 +35,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: Container(
+                child: SizedBox(
                   height: height*0.3,
                   width: height*0.3,
                   child: QRView(

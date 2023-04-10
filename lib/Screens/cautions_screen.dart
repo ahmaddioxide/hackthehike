@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackthehike/Screens/login_screen.dart';
 import 'package:hackthehike/Screens/qr_code_screen.dart';
+import 'package:hackthehike/Screens/signup_screen.dart';
 
 class CautionsScreen extends StatelessWidget {
   List<String> svgIcon = [
@@ -121,7 +123,7 @@ class CautionsScreen extends StatelessWidget {
                   height: height * 0.07,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                      onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const QRCodeScanner()), (route) => false),
+                      onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (route) => false),
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

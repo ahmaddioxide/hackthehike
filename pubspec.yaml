@@ -44,7 +44,10 @@ dependencies:
   flutter_svg: ^1.0.3
   qr_code_scanner: ^1.0.1
   firebase_core: ^2.9.0
-
+  get: ^4.6.5
+  firebase_auth: ^4.4.0
+  firebase_database: ^10.1.0
+  floating_frosted_bottom_bar: ^0.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
