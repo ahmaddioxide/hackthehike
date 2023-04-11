@@ -68,13 +68,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return const PageDecoration(
         bodyPadding: EdgeInsets.symmetric(horizontal: 10),
         titleTextStyle: TextStyle(
-          fontFamily: "OpenSans",
           fontSize: 25,
           fontWeight: FontWeight.w500,
         ),
         bodyTextStyle: TextStyle(
-          fontFamily: "OpenSans",
+          color:Colors.grey,
           fontSize: 18,
+          fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w300,
         ),
     );

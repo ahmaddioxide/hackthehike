@@ -34,21 +34,16 @@ class MyApp extends StatelessWidget {
     if (firebaseUser != null) {
       firstWidget = const BottomNavigationScreen(title: "Home");
     } else {
-      firstWidget = const LoginScreen();
+      firstWidget = const SplashScreen();
     }
     return GetMaterialApp(
       title: 'hackthehike',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.green,
-          // textTheme: TextTheme(
-          //     titleLarge: GoogleFonts.openSans(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.white),
-          //     titleMedium: GoogleFonts.openSans(fontWeight: FontWeight.w600,fontSize: 30,color: Colors.black),
-          //     titleSmall: GoogleFonts.openSans(fontWeight: FontWeight.w600,fontSize: 20,color: Colors.white),
-          //
-          //     labelSmall: GoogleFonts.openSans(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.white),
-          //     labelMedium: GoogleFonts.openSans(fontWeight: FontWeight.normal,fontSize: 13,color: Colors.black)
-          // )
+        textTheme: GoogleFonts.amaranthTextTheme(
+          Theme.of(context).textTheme,
+        ),
       ),
       home:  firstWidget,
     );

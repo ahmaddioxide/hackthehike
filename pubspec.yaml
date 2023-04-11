@@ -48,6 +48,7 @@ dependencies:
   firebase_auth: ^4.4.0
   firebase_database: ^10.1.0
   floating_frosted_bottom_bar: ^0.0.1
+  flutter_native_splash: ^2.2.19
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -100,3 +101,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: images/logo_black.png
+
+#native splash screen for android 12 and above
+android_12:
+  color: "#FFFFFF"
+  background_image: images/logo_black.png

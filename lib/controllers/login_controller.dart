@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackthehike/bottom_navigation.dart';
 import 'package:hackthehike/controllers/session_controller.dart';
-
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
   // TextField Controllers to get data from TextFields
+  var isSigningIn = false.obs;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -25,49 +26,140 @@ class LoginController extends GetxController {
         SessionController().userid = value.user!.uid
             .toString(); // this Session will store current user ID that will be useful for showing current user profile info
 
-        // Get.offAll(() => const VerifyEmailPage());
-        Get.snackbar("Success", "Login Successfully", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green, colorText: Colors.white);
+        Get.offAll(() => const BottomNavigationScreen(title: "Home"));
+        isSigningIn.value = false;
+        Get.snackbar("Success", "Login Successfully",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white);
       }).onError((error, stackTrace) {
         if (error == null) {
-          Get.snackbar("Error", "Please Enter Email & Password", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Please Enter Email & Password",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("user-not-found")) {
-          Get.snackbar("Error", "User Not Found", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "User Not Found",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("wrong-password")) {
-          Get.snackbar("Error", "Wrong Password", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Wrong Password",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("invalid-email")) {
-          Get.snackbar("Error", "Invalid Email", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Invalid Email",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("network-request-failed")) {
-          Get.snackbar("Error", "Network Error", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Network Error",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("too-many-requests")) {
-          Get.snackbar("Error", "Too Many Requests", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Too Many Requests",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("user-disabled")) {
-          Get.snackbar("Error", "User Disabled", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "User Disabled",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("operation-not-allowed")) {
-          Get.snackbar("Error", "Operation Not Allowed", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Operation Not Allowed",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("invalid-credential")) {
-          Get.snackbar("Error", "Invalid Credential", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Invalid Credential",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error
             .toString()
             .contains("account-exists-with-different-credential")) {
-          Get.snackbar("Error", "Account Exists With Different Credential", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          Get.snackbar("Error", "Account Exists With Different Credential",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("requires-recent-login")) {
-          Get.snackbar("Error", "Requires Recent Login", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Requires Recent Login",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("email-already-in-use")) {
-          Get.snackbar("Error", "Email Already In Use", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Email Already In Use",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("weak-password")) {
-          Get.snackbar("Error", "Password Should Be At Least 6 Characters", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Password Should Be At Least 6 Characters",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("invalid-email")) {
-          Get.snackbar("Error", "Invalid Email", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Invalid Email",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("user-not-found")) {
-          Get.snackbar("Error", "User Not Found", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "User Not Found",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("wrong-password")) {
-          Get.snackbar("Error", "Wrong Password", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Wrong Password",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         } else if (error.toString().contains("network-request-failed")) {
-          Get.snackbar("Error", "Network Error", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+          isSigningIn.value = false;
+
+          Get.snackbar("Error", "Network Error",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         }
       });
     } catch (error) {
-      Get.snackbar("Error", error.toString(), snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
+      isSigningIn.value = false;
+      Get.snackbar("Error", error.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
     }
   }
 }

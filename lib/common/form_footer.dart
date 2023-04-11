@@ -37,7 +37,10 @@ class FooterWidget extends StatelessWidget {
             child: Text.rich(
               TextSpan(
                   text: Texts,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400),
                   children: [
                     TextSpan(
                         text: Title,

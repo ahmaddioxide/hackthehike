@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackthehike/Screens/qr_code_screen.dart';
+import 'package:hackthehike/bottom_navigation.dart';
 import 'package:hackthehike/controllers/session_controller.dart';
 
 
@@ -10,6 +11,7 @@ import 'package:hackthehike/controllers/session_controller.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
+  var isSigningUp = false.obs;
 
   //TextField Controllers to get data from TextFields
   final email = TextEditingController();
@@ -39,22 +41,36 @@ class SignUpController extends GetxController {
           "university": university,
         });
 
-        Get.offAll(() => const QRCodeScanner());
+        Get.offAll(() => const BottomNavigationScreen(title: "Home"));
         Get.snackbar("Success", "Sign Up Successfully", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green, colorText: Colors.white);
       }).onError((error, stackTrace) {
+        isSigningUp.value = false;
+
         if (error.toString().contains("email-already-in-use")) {
+          isSigningUp.value = false;
+
           Get.snackbar("Error", "Email Already In Use", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
         } else if (error.toString().contains("weak-password")) {
+          isSigningUp.value = false;
+
           Get.snackbar("Error", "Password Should Be At Least 6 Characters", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
         } else if (error.toString().contains("invalid-email")) {
+          isSigningUp.value = false;
+
           Get.snackbar("Error", "Invalid Email", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
         } else if (error.toString().contains("network-request-failed")) {
+          isSigningUp.value = false;
+
           Get.snackbar("Error", "Check Your Internet Connection", snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
         } else {
+          isSigningUp.value = false;
+
           Get.snackbar("Error", error.toString(), snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
         }
       });
     } catch (error) {
+      isSigningUp.value = false;
+
       Get.snackbar("Error", error.toString(), snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red, colorText: Colors.white);
       debugPrint(error.toString());
     }

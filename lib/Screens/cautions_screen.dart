@@ -39,7 +39,7 @@ class CautionsScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding:  EdgeInsets.only(top: height * 0.06),
+          padding:  EdgeInsets.only(top: height * 0.1),
           child: Container(
             height: height,
             width: width,
@@ -77,9 +77,11 @@ class CautionsScreen extends StatelessWidget {
                                       elevation: 20,
                                       title: FittedBox(
                                           child: Text(text[index],
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .labelMedium)),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20,
+                                                  fontWeight:
+                                                      FontWeight.w600))),
                                       icon: SvgPicture.asset(
                                         svgIcon[index],
                                         height: height * 0.1,
@@ -108,9 +110,10 @@ class CautionsScreen extends StatelessWidget {
                                     ),
                                     FittedBox(
                                         child: Text(text[index],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelMedium))
+                                            style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400))),
                                   ],
                                 ),
                               ),
@@ -124,12 +127,15 @@ class CautionsScreen extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                       onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (route) => false),
-                      child: Center(
+                      child: const Center(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
+                          padding: EdgeInsets.all(8.0),
+                          child:Text(
                             "Let's Start!",
-                            style: Theme.of(context).textTheme.titleSmall,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500)
                           ),
                         ),
                       )),

@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(
-        const Duration(seconds: 3),
+        const Duration(seconds: 2),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const OnBoardingScreen())));
   }
@@ -42,10 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
               height: height * 0.3,
               fit: BoxFit.fitHeight,
             ),
-            Text(
+            const Text(
               "Hack The Hike",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                fontStyle: FontStyle.normal,
+                color: Colors.white
+            ),),
             SizedBox(
               height: height * 0.05,
             ),
@@ -55,9 +59,14 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.fitHeight,
             ),
             const Spacer(),
-            Text(
+            const Text(
               "Developed with ❤️ by AUBBS",
-              style: Theme.of(context).textTheme.labelSmall,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                fontStyle: FontStyle.normal,
+                color: Colors.white
+              ),
             )
           ],
         ),

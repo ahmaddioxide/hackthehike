@@ -1,11 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_frosted_bottom_bar/floating_frosted_bottom_bar.dart';
+import 'package:hackthehike/Screens/profile_screen.dart';
+import 'package:hackthehike/Screens/qr_code_screen.dart';
 // import 'logo_list.dart';
 
-
 class BottomNavigationScreen extends StatefulWidget {
-  const BottomNavigationScreen({Key? key, required this.title}) : super(key: key);
+  const BottomNavigationScreen({Key? key, required this.title})
+      : super(key: key);
 
   final String title;
 
@@ -20,10 +22,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen>
 
   final List<Color> colors = [
     Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
-    Colors.green,
+    Colors.yellowAccent,
   ];
 
   @override
@@ -31,7 +30,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen>
     currentPage = 0;
     tabController = TabController(length: 5, vsync: this);
     tabController.animation!.addListener(
-          () {
+      () {
         final value = tabController.animation!.value.round();
         if (value != currentPage && mounted) {
           changePage(value);
@@ -56,38 +55,37 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      // ),
       body: FrostedBottomBar(
-        opacity: 0.6,
-        sigmaX: 5,
-        sigmaY: 5,
+        curve: Curves.easeInOut,
+
+        bottom: 7,
+        opacity: 0.5,
+        sigmaX: 4,
+        sigmaY: 4,
         borderRadius: BorderRadius.circular(500),
         duration: const Duration(milliseconds: 800),
-        hideOnScroll: true,
+        // hideOnScroll: true,
         body: (context, controller) => TabBarView(
-          controller: tabController,
-          dragStartBehavior: DragStartBehavior.down,
-          physics: const BouncingScrollPhysics(),
-          children:const [
-            Text("data"),
-            Text("data2"),
-          ]
-        ),
+            controller: tabController,
+            dragStartBehavior: DragStartBehavior.down,
+            physics: const BouncingScrollPhysics(),
+            children: const [QRCodeScanner(), ProfileScreen()]),
         child: TabBar(
-          indicatorPadding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
+          indicatorPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           controller: tabController,
           indicator: const UnderlineTabIndicator(
-            borderSide: BorderSide(color: Colors.green, width: 4),
+            borderSide: BorderSide(color: Colors.green, width: 5),
             insets: EdgeInsets.fromLTRB(16, 0, 16, 8),
           ),
           tabs: [
             TabsIcon(
-                icons: Icons.home,
+                icons: Icons.qr_code,
                 color: currentPage == 0 ? colors[0] : Colors.white),
             TabsIcon(
-                icons: Icons.qr_code,
+                icons: Icons.person,
                 color: currentPage == 1 ? colors[1] : Colors.white),
           ],
         ),
@@ -104,10 +102,10 @@ class TabsIcon extends StatelessWidget {
 
   const TabsIcon(
       {Key? key,
-        this.color = Colors.white,
-        this.height = 60,
-        this.width = 50,
-        required this.icons})
+      this.color = Colors.white,
+      this.height = 60,
+      this.width = 50,
+      required this.icons})
       : super(key: key);
 
   @override

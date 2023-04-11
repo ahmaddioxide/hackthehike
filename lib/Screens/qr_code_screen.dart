@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRCodeScanner extends StatefulWidget {
@@ -26,29 +27,51 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SizedBox(
-        height: height,
-        width: width,
-        child: Column(
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: SizedBox(
-                  height: height*0.3,
-                  width: height*0.3,
-                  child: QRView(
-                    key: _key,
-                    onQRViewCreated: qr,
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Center(
+                child:  Text("SCAN QR CODE",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
+                      color:  Color(0xff000000),
+                    )),
 
-                  )
+              ),
+              LottieBuilder.asset(
+                "assets/qr-scanner.json",
+                height: height * 0.2,
+                fit: BoxFit.fitHeight,
+              ),
+
+              SizedBox(height: height*0.03,),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: SizedBox(
+                    height: height*0.3,
+                    width: height*0.3,
+                    child: QRView(
+                      key: _key,
+                      onQRViewCreated: qr,
+
+                    )
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: height*0.1,),
-            result != null ? Text("${result!.code}",style: Theme.of(context).textTheme.titleLarge) : Text("Scan the QR Code",style: Theme.of(context).textTheme.titleLarge,)
-          ],
+              SizedBox(height: height*0.05,),
+              result != null ? Text("${result!.code}",style: Theme.of(context).textTheme.titleLarge) : const Text("",style: TextStyle(color: Colors.green,fontSize: 20),),
+            ],
+          ),
         ),
       )
     );

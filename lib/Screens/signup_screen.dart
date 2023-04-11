@@ -166,6 +166,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12))),
                           onPressed: () {
+                            controller.isSigningUp.value = true;
                             if (_formkey.currentState!.validate()) {
                               SignUpController.instance.signUp(
                                 controller.fullName.text.trim(),
@@ -174,9 +175,23 @@ class _SignupScreenState extends State<SignupScreen> {
                                 controller.phoneNo.text.trim(),
                                 controller.university.text.trim(),
                               );
+                            }else{
+                              controller.isSigningUp.value = false;
                             }
                           },
-                          child: Text("Sign Up".toUpperCase()),
+                          child:   Obx(() {
+                            if (controller.isSigningUp.isTrue) {
+                              return const CircularProgressIndicator(
+                                color: Colors.white,
+                              );
+                            } else {
+                              return  Text("SIGNUP".toUpperCase(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ));
+                            }
+                          }) ,
                         ),
                       ),
                     ],
