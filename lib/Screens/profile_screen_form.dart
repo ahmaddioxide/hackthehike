@@ -41,6 +41,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
                 key: _formkey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(height: Get.height * 0.1),
                     const Text("USER INFO",

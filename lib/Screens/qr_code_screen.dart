@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:get/get.dart';
+
+import '../controllers/QRScreen_controller.dart';
 
 class QRCodeScanner extends StatefulWidget {
   const QRCodeScanner({Key? key}) : super(key: key);
@@ -10,6 +13,7 @@ class QRCodeScanner extends StatefulWidget {
 }
 
 class _QRCodeScannerState extends State<QRCodeScanner> {
+  final qrController = Get.put(QRcontroller());
   GlobalKey _key = GlobalKey();
   QRViewController? controller;
   Barcode? result;
@@ -18,7 +22,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
     this.controller = controller;
     controller.scannedDataStream.listen((event) {
       setState(() {
-        result = event;
+        qrController.result = event;
       });
     });
   }
@@ -69,7 +73,33 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
                 ),
               ),
               SizedBox(height: height*0.05,),
-              result != null ? Text("${result!.code}",style: Theme.of(context).textTheme.titleLarge) : const Text("",style: TextStyle(color: Colors.green,fontSize: 20),),
+
+
+              qrController.result != null
+                  ?
+             qrController.getQuestion()
+                  :
+              const Text("No Question",style: TextStyle(color: Colors.green,fontSize: 20),),
+              SizedBox(height: height*0.05,),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                Obx(() {
+                  return  TextFormField(
+                    enabled: qrController.questionBoxEnabled.value,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      ),
+                      labelText: "Enter Answer",
+                      hintText: "Enter Answer",
+                    ),
+                  );
+
+                })
+
+
+                ),
             ],
           ),
         ),
