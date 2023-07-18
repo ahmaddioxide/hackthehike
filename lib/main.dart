@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restapi_flutter/Home_Screen.dart';
+import 'package:restapi_flutter/RestAPI_Photo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,9 +9,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home:   RestApiPhoto(),
     );
   }
 }
-
-

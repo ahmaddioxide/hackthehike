@@ -9,7 +9,6 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
-
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -57,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Card(
+
                               elevation: 5,
                               borderOnForeground: true,
                               color: Colors.grey[200],
@@ -92,9 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       style: const TextStyle(
                                         overflow: TextOverflow.ellipsis,
                                         wordSpacing: 1.5,
-
                                       ),
-
                                     ),
                                   ],
                                 ),

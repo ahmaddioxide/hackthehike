@@ -1,9 +1,10 @@
 class PostModel {
   PostModel({
-      required this.userId,
-      required this.id,
-      required this.title,
-      required this.body,});
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.body,
+  });
 
   PostModel.fromJson(dynamic json) {
     userId = json['userId'];
@@ -11,6 +12,7 @@ class PostModel {
     title = json['title'];
     body = json['body'];
   }
+
   int? userId;
   int? id;
   String? title;
@@ -24,5 +26,4 @@ class PostModel {
     map['body'] = body;
     return map;
   }
-
 }
