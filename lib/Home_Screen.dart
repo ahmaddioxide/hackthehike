@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:restapi_flutter/Model/PostModel.dart';
 import 'package:http/http.dart' as http;
@@ -56,7 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Card(
-
                               elevation: 5,
                               borderOnForeground: true,
                               color: Colors.grey[200],
