@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restapi_flutter/Home_Screen.dart';
 import 'package:restapi_flutter/RestAPI_Photo.dart';
 import 'package:restapi_flutter/RestApi_User.dart';
+import 'package:restapi_flutter/SignupAPi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:   UserApi(),
+      home:   SignUp(),
     );
   }
 }
