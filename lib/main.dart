@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restapi_flutter/Home_Screen.dart';
+import 'package:restapi_flutter/Model/RestApi_Postimage.dart';
 import 'package:restapi_flutter/RestAPI_Photo.dart';
 import 'package:restapi_flutter/RestApi_User.dart';
 import 'package:restapi_flutter/SignupAPi.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:   SignUp(),
+      home:   UploadImageScreen(),
     );
   }
 }
