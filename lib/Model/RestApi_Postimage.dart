@@ -59,6 +59,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
       });
     }
 
+
   }
 
   @override
